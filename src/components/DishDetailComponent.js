@@ -12,7 +12,7 @@ class DishDetail extends Component {
           <li key={comment.id}>
             <ul className="list-unstyled">
               <li className="mt-2">{comment.comment}</li>
-              <li className="mt-2"> -- {comment.author}, {comment.date}</li>
+              <li className="mt-2"> -- {comment.author}, {new Intl.DateTimeFormat('en-US', { year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(comment.date)))}</li>
             </ul>        
           </li>
         );
@@ -49,12 +49,14 @@ class DishDetail extends Component {
   render() {
     const dish = this.props.dish;
     return (
-      <div className="row">
-        <div  className="col-12 col-md-5 m-1">
-          {this.renderDish(dish)}
-        </div>
-        <div className="col-12 col-md-5 m-1">
-            {this.renderComments(dish ? dish.comments : null )}
+      <div className="container">
+        <div className="row">
+          <div  className="col-12 col-md-5 m-1">
+            {this.renderDish(dish)}
+          </div>
+          <div className="col-12 col-md-5 m-1">
+              {this.renderComments(dish ? dish.comments : null )}
+          </div>
         </div>
       </div>
     );
